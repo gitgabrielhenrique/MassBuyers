@@ -2,6 +2,8 @@ package br.com.MassBuyers.MassBuyers.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +15,17 @@ public class Tipoprod {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
+    @OneToMany(mappedBy = "tipoprod")
+    private List<Subtipoprod> subtipotipo= new ArrayList<>();
+
+    public List<Subtipoprod> getSubtipotipo() {
+        return subtipotipo;
+    }
+
+    public void setSubtipotipo(List<Subtipoprod> subtipotipo) {
+        this.subtipotipo = subtipotipo;
+    }
 
     public Long getId() {
         return id;
