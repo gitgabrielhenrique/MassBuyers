@@ -2,6 +2,8 @@ package br.com.MassBuyers.MassBuyers.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +17,13 @@ private String nome;
 @ManyToOne
 @JoinColumn(name = "idestado")
 private Estado estado;
+
+@OneToMany(mappedBy = "cidade")
+private List<Fornecedor> fornecedor= new ArrayList<>();
+
+  @OneToMany(mappedBy = "cidade")
+  private List<Cliente> clientes= new ArrayList<>();
+
 
 
     public Long getId() {
@@ -41,7 +50,16 @@ private Estado estado;
         this.estado = estado;
     }
 
-    @Override
+
+  public List<Fornecedor> getFornecedor() {
+    return fornecedor;
+  }
+
+  public void setFornecedor(List<Fornecedor> fornecedor) {
+    this.fornecedor = fornecedor;
+  }
+
+  @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

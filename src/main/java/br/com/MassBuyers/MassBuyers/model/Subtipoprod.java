@@ -1,6 +1,8 @@
 package br.com.MassBuyers.MassBuyers.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="sub_tipoprod")
@@ -14,4 +16,39 @@ public class Subtipoprod {
     @ManyToOne
     @JoinColumn(name = "tipoprodid")
     private Tipoprod tipoprod;
+
+    @OneToMany(mappedBy = "subtipoprod")
+  private List<Produto> produto=new ArrayList<>();
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public Tipoprod getTipoprod() {
+    return tipoprod;
+  }
+
+  public void setTipoprod(Tipoprod tipoprod) {
+    this.tipoprod = tipoprod;
+  }
+
+  public List<Produto> getProduto() {
+    return produto;
+  }
+
+  public void setProduto(List<Produto> produto) {
+    this.produto = produto;
+  }
 }
