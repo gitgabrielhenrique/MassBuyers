@@ -9,9 +9,10 @@ import java.util.List;
 @Table(name="fornecedor")
 public class Fornecedor {
 @Id
-  private int id;
-private int cnpj;
-private int telefone;
+  private Long id;
+
+private Long cnpj;
+private Long telefone;
 private String descricao;
 private String email;
   private String senha;
