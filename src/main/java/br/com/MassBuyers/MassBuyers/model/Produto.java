@@ -11,9 +11,35 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 private String nome;
+private double precovenda;
+  private double precorevenda;
+private int quantidade;
 
+  public int getQuantidade() {
+    return quantidade;
+  }
 
-    @ManyToOne
+  public void setQuantidade(int quantidade) {
+    this.quantidade = quantidade;
+  }
+
+  public double getPrecovenda() {
+    return precovenda;
+  }
+
+  public void setPrecovenda(double precovenda) {
+    this.precovenda = precovenda;
+  }
+
+  public double getPrecorevenda() {
+    return precorevenda;
+  }
+
+  public void setPrecorevenda(double precorevenda) {
+    this.precorevenda = precorevenda;
+  }
+
+  @ManyToOne
     @JoinColumn(name = "subtipoid")
     private Subtipoprod subtipoprod;
 

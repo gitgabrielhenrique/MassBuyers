@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "cliente")
 public class Cliente {
-  private int id;
+  private Long id;
   private String nome;
   private String email;
   private Date nascimento;
@@ -22,11 +22,11 @@ public class Cliente {
   @OneToMany (mappedBy = "cliente")
   private List<Venda> vendas= new ArrayList<>();
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

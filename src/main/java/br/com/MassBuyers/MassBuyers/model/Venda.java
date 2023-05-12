@@ -9,7 +9,7 @@ import java.util.List;
 public class Venda {
 
   @Id
-  private int id;
+  private Long id;
   private Date data;
 
  @ManyToOne
@@ -24,11 +24,11 @@ public class Venda {
   @JoinColumn(name = "idcliente")
   private Cliente cliente;
 
-  public int getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
