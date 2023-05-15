@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "cliente")
+@Table(name="cliente")
 public class Cliente {
+  @Id
   private Long id;
   private String nome;
   private String email;

@@ -59,5 +59,5 @@ id bigint primary key not null auto_increment,
 data date,
 idfornecedor bigint not null,
 idcliente bigint not null,
-idcliente bigint not null
+idproduto bigint not null
 );
