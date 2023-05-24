@@ -1,22 +1,22 @@
 create table cidade(
 
 id bigint primary key not null auto_increment,
-nome varchar(50),
-idestado varchar(45)
+nome varchar(50) not null,
+idestado bigint not null
 );
 
 create table cliente(
-id bigint primary key not null auto_increment,
+id bigint not null auto_increment primary key,
  nome varchar(150),
  nascimento date,
 email varchar(150),
 senha varchar(75),
 telefone int,
-idestado bigint not null
+idcidade bigint not null
 );
 
 create table estado(
-id bigint primary key not null auto_increment,
+id bigint not null auto_increment primary key,
 nome varchar(50)
 );
 
@@ -44,7 +44,8 @@ fornecedorid bigint not null
 
 create table subtipoprod(
 id bigint primary key not null auto_increment,
-nome varchar(50)
+nome varchar(50),
+tipoprodid bigint  not null
 );
 
 create table tipoprod(
@@ -54,7 +55,7 @@ nome varchar(50)
 
 );
 
-create table vendas(
+create table venda(
 id bigint primary key not null auto_increment,
 data date,
 idfornecedor bigint not null,

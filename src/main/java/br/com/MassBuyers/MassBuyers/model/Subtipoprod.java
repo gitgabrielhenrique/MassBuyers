@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="sub_tipoprod")
+@Table(name="subtipoprod")
 public class Subtipoprod {
 
     @Id
