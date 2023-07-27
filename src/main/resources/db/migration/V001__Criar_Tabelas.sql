@@ -48,7 +48,7 @@ nome varchar(50),
 tipoprodid bigint  not null
 );
 
-create table tipoprod(
+create table tipo_prod(
 id bigint primary key not null auto_increment,
 nome varchar(50)
 
