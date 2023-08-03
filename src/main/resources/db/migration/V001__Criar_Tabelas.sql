@@ -15,6 +15,9 @@ telefone int,
 idcidade bigint not null
 );
 
+insert into cliente(id,nome,nascimento,email,senha,telefone,idcidade) values(1,'gabriel','2005-06-16','gabriel@gmail','123234',1499101343,1);
+
+
 create table estado(
 id bigint not null auto_increment primary key,
 nome varchar(50)
