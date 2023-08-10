@@ -6,7 +6,7 @@ idestado bigint not null
 
 insert into cidade(id, nome, idestado) values(1,'lencois',1);
 insert into cidade(id, nome, idestado) values(2,'vitoria',2);
-insert into cidade(id, nome, idestado) values(3,'piraporinhadocaraio',1)
+insert into cidade(id, nome, idestado) values(3,'piraporinhadocaraio',1);
 
 
 create table cliente(
@@ -19,11 +19,11 @@ telefone int,
 idcidade bigint not null
 );
 
-insert into cliente(id, nome, nascimento, email, senha, telefone, idcidade) values(1, 'serginho', '2020-10-06', 'serginhobochechas@gmail.com', 'bochechadebaixo', '19998314733', 3);
-insert into cliente(id, nome, nascimento, email, senha, telefone, idcidade) values(2, 'pirombo', '1860-10-25', 'piromboedaidademedia@gmail.com', 'idademedia', '19998314555', 3);
-insert into cliente(id, nome, nascimento, email, senha, telefone, idcidade) values(3, 'grampa', '7070-05-07', 'grampafromthefuture07@gmail.com', 'bladerunner2043', '19999999999', 1);
-insert into cliente(id, nome, nascimento, email, senha, telefone, idcidade) values(4, 'sazinhp', '2020-02-33', 'sazinhopontocom@gmail.com', 'fazmeu', '196687954309', 2);
-insert into cliente(id, nome, nascimento, email, senha, telefone, idcidade) values(5, 'raul', '2006-01-13', 'lunaticos@gmail.com', 'gabrielmeupapai', '14998620607', 1);
+insert into cliente(id, nome, nascimento, email, senha, telefone, idcidade) values(1, 'serginho', '2020-10-06', 'serginhobochechas@gmail.com', 'bochechadebaixo', 1999831, 3);
+insert into cliente(id, nome, nascimento, email, senha, telefone, idcidade) values(2, 'pirombo', '1860-10-25', 'piromboedaidademedia@gmail.com', 'idademedia', 199983, 3);
+insert into cliente(id, nome, nascimento, email, senha, telefone, idcidade) values(3, 'grampa', '7070-05-07', 'grampafromthefuture07@gmail.com', 'bladerunner2043', 19999, 1);
+
+insert into cliente(id, nome, nascimento, email, senha, telefone, idcidade) values(5, 'raul', '2006-01-13', 'lunaticos@gmail.com', 'gabrielmeupapai', 1499862, 1);
 
 
 create table estado(
@@ -46,11 +46,8 @@ senha varchar(75),
 idcidade bigint not null
 );
 
-insert into fornecedor(id, cnpj, nome, telefone, descricao, email, senha, idcidade) values();
-insert into fornecedor(id, cnpj, nome, telefone, descricao, email, senha, idcidade) values();
-insert into fornecedor(id, cnpj, nome, telefone, descricao, email, senha, idcidade) values();
-insert into fornecedor(id, cnpj, nome, telefone, descricao, email, senha, idcidade) values();
-insert into fornecedor(id, cnpj, nome, telefone, descricao, email, senha, idcidade) values();
+insert into fornecedor(id, cnpj, nome, telefone, descricao, email, senha, idcidade) values(1,12123,'junao',1499810,'vendedor de caixas','junao@gmail.com','gatinhosenha',1);
+insert into fornecedor(id, cnpj, nome, telefone, descricao, email, senha, idcidade) values(2,124314,'sarah',1414141,'vendeodora de crack','culargo@gmail.com','bucetadormente',2);
 
 
 
@@ -59,14 +56,14 @@ insert into fornecedor(id, cnpj, nome, telefone, descricao, email, senha, idcida
 create table produto(
 id bigint primary key not null auto_increment,
 nome varchar(50),
-precovenda decimal(9,9),
-precorevenda decimal(9,9),
+precovenda decimal(21,10),
+precorevenda decimal(21,10),
 quantidade int,
 subtipoid bigint not null,
 fornecedorid bigint not null
 );
-
-
+insert into produto(id,nome,precovenda,precorevenda,quantidade,subtipoid,fornecedorid) values(1,'caixa rosa',14.14,20.20,4,1,1);
+insert into produto(id,nome,precovenda,precorevenda,quantidade,subtipoid,fornecedorid) values(2,'pedrade crack',1.14,10.20,5,2,2);
 
 
 
@@ -75,9 +72,10 @@ fornecedorid bigint not null
 create table subtipoprod(
 id bigint primary key not null auto_increment,
 nome varchar(50),
-tipoprodid bigint  not null
+tipoprodid bigint not null
 );
-
+insert into subtipoprod(id,nome,tipoprodid) values(1,'transporte',1);
+insert into subtipoprod(id,nome,tipoprodid) values(2,'japones',2);
 
 
 
@@ -91,6 +89,8 @@ nome varchar(50)
 
 
 );
+insert into tipo_prod(id,nome)values(1,'utilidades');
+insert into tipo_prod(id,nome)values(2,'alimentos');
 
 create table venda(
 id bigint primary key not null auto_increment,
@@ -99,3 +99,5 @@ idfornecedor bigint not null,
 idcliente bigint not null,
 idproduto bigint not null
 );
+insert into venda(id,data,idfornecedor,idcliente,idproduto)values(1,'2023-3-3',1,1,1);
+insert into venda(id,data,idfornecedor,idcliente,idproduto) values(2,'2023-4-6',2,2,2);
