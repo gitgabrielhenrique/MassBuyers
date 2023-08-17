@@ -1,5 +1,7 @@
 package br.com.MassBuyers.MassBuyers.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name="subtipoprod")
 public class Subtipoprod {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +19,7 @@ public class Subtipoprod {
     @ManyToOne
     @JoinColumn(name = "tipoprodid")
     private Tipoprod tipoprod;
-
+  @JsonIgnore
     @OneToMany(mappedBy = "subtipoprod")
   private List<Produto> produto=new ArrayList<>();
 

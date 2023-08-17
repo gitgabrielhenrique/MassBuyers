@@ -1,6 +1,8 @@
 package br.com.MassBuyers.MassBuyers.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ public class Tipoprod {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-
+  @JsonIgnore
     @OneToMany(mappedBy = "tipoprod")
     private List<Subtipoprod> subtipotipo= new ArrayList<>();
 

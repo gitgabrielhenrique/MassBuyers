@@ -3,6 +3,7 @@ package br.com.MassBuyers.MassBuyers.repository.tipoprod;
 import br.com.MassBuyers.MassBuyers.filter.Tipoprodfilter;
 import br.com.MassBuyers.MassBuyers.model.Tipoprod;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +21,7 @@ import java.util.List;
 public class TipoprodRepositoryImpl implements TipoprodRepositoryQuery {
 
 
-  @PersistenceContext
+@Autowired
   private EntityManager manager;
 
   @Override
