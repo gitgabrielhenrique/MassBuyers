@@ -1,6 +1,8 @@
 package br.com.MassBuyers.MassBuyers.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Estado {
 private Long id;
 
 private String nome;
-
+  @JsonIgnore
 @OneToMany(mappedBy = "estado")
 private List <Cidade> cidadeestado = new ArrayList<>();
 
