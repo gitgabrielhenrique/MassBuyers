@@ -12,7 +12,7 @@ public class Cidade {
     @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
-private String nome;
+  private String nomecidade;
 
 @ManyToOne
 @JoinColumn(name = "idestado")
@@ -34,15 +34,15 @@ private List<Fornecedor> fornecedor= new ArrayList<>();
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
-    }
+  public String getNomecidade() {
+    return nomecidade;
+  }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public void setNomecidade(String nomecidade) {
+    this.nomecidade = nomecidade;
+  }
 
-    public Estado getEstado() {
+  public Estado getEstado() {
         return estado;
     }
 
@@ -57,6 +57,14 @@ private List<Fornecedor> fornecedor= new ArrayList<>();
 
   public void setFornecedor(List<Fornecedor> fornecedor) {
     this.fornecedor = fornecedor;
+  }
+
+  public List<Cliente> getClientes() {
+    return clientes;
+  }
+
+  public void setClientes(List<Cliente> clientes) {
+    this.clientes = clientes;
   }
 
   @Override

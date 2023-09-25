@@ -2,36 +2,37 @@ package br.com.MassBuyers.MassBuyers.repository.projections;
 
 public class CidadeDto {
   private Long id;
+  private String nomecidade;
   private String nome;
-  private String nomestado;
 
-  public CidadeDto(Long id, String nome, String nomestado) {
+  public CidadeDto(Long id, String nomecidade, String nome) {
     this.id = id;
+    this.nomecidade = nomecidade;
     this.nome = nome;
-    this.nomestado = nomestado;
   }
 
-  public Long getIdcidad() {
+  public Long getId() {
     return id;
   }
 
-  public void setIdcidad(Long idcidad) {
-    this.id = idcidad;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getNomecidade() {
-    return nome;
+    return nomecidade;
   }
 
   public void setNomecidade(String nomecidade) {
-    this.nome= nomecidade;
+    this.nomecidade = nomecidade;
   }
 
-  public String getNomestado() {
-    return nomestado;
+  public String getNome() {
+    return nome;
   }
 
-  public void setNomestado(String nomestado) {
-    this.nomestado = nomestado;
+  public void setNome(String nome) {
+    this.nome = nome;
   }
 }
+

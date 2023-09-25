@@ -1,15 +1,15 @@
 package br.com.MassBuyers.MassBuyers.filter;
 
 public class Cidadefilter {
-private String nome;
+private String nomecidade;
 private String nomeestado;
 
   public String getNomecidade() {
-    return nome;
+    return nomecidade;
   }
 
   public void setNomecidade(String nomecidade) {
-    this.nome= nomecidade;
+    this.nomecidade= nomecidade;
   }
 
   public String getNomeestado() {

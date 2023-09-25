@@ -1,12 +1,12 @@
 create table cidade(
 id bigint primary key not null auto_increment,
-nome varchar(50) not null,
+nomecidade varchar(50) not null,
 idestado bigint not null
 );
 
-insert into cidade(id, nome, idestado) values(1,'lencois',1);
-insert into cidade(id, nome, idestado) values(2,'vitoria',2);
-insert into cidade(id, nome, idestado) values(3,'piraporinhadocaraio',1);
+insert into cidade(id, nomecidade, idestado) values(1,'lencois',1);
+insert into cidade(id, nomecidade, idestado) values(2,'vitoria',2);
+insert into cidade(id, nomecidade, idestado) values(3,'piraporinhadocaraio',1);
 
 
 create table cliente(

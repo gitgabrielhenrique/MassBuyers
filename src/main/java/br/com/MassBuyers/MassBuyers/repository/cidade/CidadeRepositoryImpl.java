@@ -31,13 +31,13 @@ public class CidadeRepositoryImpl implements CidadeRepositoryQuery {
 
     criteria.select(builder.construct(CidadeDto.class,
       root.get("id")
-      ,root.get("nome")
+      ,root.get("nomecidade")
       ,root.get("estado").get("nome")
     ));
 
     Predicate[] predicates = criarRestricoes(builder, cidadefilter, root);
     criteria.where(predicates);
-    criteria.orderBy(builder.asc(root.get("nome")));
+    criteria.orderBy(builder.asc(root.get("nomecidade")));
 
     TypedQuery<CidadeDto> query = manager.createQuery(criteria);
     adicionarRestricoesDaPaginacao(query, pageable);
