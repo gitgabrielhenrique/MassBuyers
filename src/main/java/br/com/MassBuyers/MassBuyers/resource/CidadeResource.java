@@ -25,6 +25,7 @@ public class CidadeResource {
   public List<Cidade> ListarTodasAsCidades(){
 return cidadeRepository.findAll();
   }
+
   @GetMapping()
   public Page<CidadeDto> pesquisar(Cidadefilter cidadefilter, Pageable pageable){
     return  cidadeRepository.Filtrar(cidadefilter,pageable);

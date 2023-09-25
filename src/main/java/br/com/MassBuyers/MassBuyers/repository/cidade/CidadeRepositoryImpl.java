@@ -71,14 +71,14 @@ public class CidadeRepositoryImpl implements CidadeRepositoryQuery {
 
     if (!StringUtils.isEmpty(cidadefilter.getNomecidade()))
     {
-      predicates.add(builder.like(builder.lower(root.get("nomecidade ")),
+      predicates.add(builder.like(builder.lower(root.get("nomecidade")),
         "%" + cidadefilter.getNomecidade().toLowerCase() + "%"
       ));
     }
 
     if (!StringUtils.isEmpty(cidadefilter.getNomecidade()))
     {
-      predicates.add(builder.like(builder.lower(root.get("estado").get("nomestado")),
+      predicates.add(builder.like(builder.lower(root.get("estado").get("nome")),
         "%" + cidadefilter.getNomecidade().toLowerCase() + "%"
       ));
     }
