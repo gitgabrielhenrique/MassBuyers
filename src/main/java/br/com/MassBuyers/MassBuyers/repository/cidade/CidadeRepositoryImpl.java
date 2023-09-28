@@ -76,10 +76,10 @@ public class CidadeRepositoryImpl implements CidadeRepositoryQuery {
       ));
     }
 
-    if (!StringUtils.isEmpty(cidadefilter.getNomecidade()))
+    if (!StringUtils.isEmpty(cidadefilter.getNomeestado()))
     {
       predicates.add(builder.like(builder.lower(root.get("estado").get("nome")),
-        "%" + cidadefilter.getNomecidade().toLowerCase() + "%"
+        "%" + cidadefilter.getNomeestado().toLowerCase() + "%"
       ));
     }
 

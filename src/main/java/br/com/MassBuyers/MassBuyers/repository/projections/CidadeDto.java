@@ -3,12 +3,13 @@ package br.com.MassBuyers.MassBuyers.repository.projections;
 public class CidadeDto {
   private Long id;
   private String nomecidade;
-  private String nome;
+  private String nomeestado;
 
-  public CidadeDto(Long id, String nomecidade, String nome) {
+
+  public CidadeDto(Long id, String nomecidade, String nomeestado) {
     this.id = id;
     this.nomecidade = nomecidade;
-    this.nome = nome;
+    this.nomeestado = nomeestado;
   }
 
   public Long getId() {
@@ -27,12 +28,12 @@ public class CidadeDto {
     this.nomecidade = nomecidade;
   }
 
-  public String getNome() {
-    return nome;
+  public String getNomeestado() {
+    return nomeestado;
   }
 
-  public void setNome(String nome) {
-    this.nome = nome;
+  public void setNomeestado(String nomeestado) {
+    this.nomeestado = nomeestado;
   }
 }
 
