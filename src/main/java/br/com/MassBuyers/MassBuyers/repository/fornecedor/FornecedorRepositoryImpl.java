@@ -21,8 +21,8 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FornecedorRepositoryImpl {
-
+public class FornecedorRepositoryImpl implements FornecedorRepositoryQuery {
+//SOCORRO NEYMAR
 
   @Autowired
   private EntityManager manager;
@@ -37,7 +37,7 @@ public class FornecedorRepositoryImpl {
       root.get("id"),
       root.get("nome"),
       root.get("descricao"),
-      root.get("nomecidade"),
+      root.get("cidade").get("nomecidade"),
       root.get("cidade").get("estado").get("nome"),
       root.get("cnpj"),
       root.get("email"),
@@ -46,7 +46,7 @@ public class FornecedorRepositoryImpl {
 
     Predicate[] predicates = criarRestricoes(builder, fornecedorfilter, root);
     criteria.where(predicates);
-    criteria.orderBy(builder.asc(root.get("nomefornecedor")));
+    criteria.orderBy(builder.asc(root.get("nome")));
 
     TypedQuery<FornecedorDto> query = manager.createQuery(criteria);
     adicionarRestricoesDaPaginacao(query, pageable);
@@ -70,7 +70,7 @@ public class FornecedorRepositoryImpl {
 
     Predicate[] predicates = criarRestricoes(builder, fornecedorfilter, root);
     criteria.where(predicates);
-    criteria.orderBy(builder.asc(root.get("nomefornecedor")));
+    criteria.orderBy(builder.asc(root.get("nome")));
     criteria.select(builder.count(root));
     return manager.createQuery(criteria).getSingleResult();
   }
@@ -78,10 +78,10 @@ public class FornecedorRepositoryImpl {
   private Predicate[] criarRestricoes(CriteriaBuilder builder, Fornecedorfilter fornecedorfilter, Root<Fornecedor> root) {
     List<Predicate> predicates = new ArrayList<>();
 
-    if (!StringUtils.isEmpty(fornecedorfilter.getNomefornecedor()))
+    if (!StringUtils.isEmpty(fornecedorfilter.getNome()))
     {
-      predicates.add(builder.like(builder.lower(root.get("nomefornecedor")),
-        "%" + fornecedorfilter.getNomefornecedor().toLowerCase() + "%"
+      predicates.add(builder.like(builder.lower(root.get("nome")),
+        "%" + fornecedorfilter.getNome().toLowerCase() + "%"
       ));
     }
 
@@ -94,7 +94,7 @@ public class FornecedorRepositoryImpl {
     if (!StringUtils.isEmpty(fornecedorfilter.getNomeestado()))
     {
       predicates.add(builder.like(builder.lower(root.get("cidade").get("estado").get("nome")),
-        "%" + fornecedorfilter.getNomefornecedor().toLowerCase() + "%"
+        "%" + fornecedorfilter.getNome().toLowerCase() + "%"
       ));
     }
     if (!StringUtils.isEmpty(fornecedorfilter.getDescricao()))
@@ -105,9 +105,21 @@ public class FornecedorRepositoryImpl {
     }
     if ((fornecedorfilter.getCnpj()!=null))
     {
-      //continuar aqui
-      predicates.add(builder.like(builder.greaterThanOrEqualTo(root.get("cnpj")),
-        "%" + fornecedorfilter.getDescricao().toLowerCase() + "%"
+
+      predicates.add(builder.greaterThanOrEqualTo((root.get("cnpj")),
+        "%" + fornecedorfilter.getCnpj() + "%"
+      ));
+    }
+    if (!StringUtils.isEmpty(fornecedorfilter.getEmail()))
+    {
+      predicates.add(builder.like(builder.lower(root.get("email")),
+        "%" + fornecedorfilter.getEmail().toLowerCase() + "%"
+      ));
+    }
+    if (!StringUtils.isEmpty(fornecedorfilter.getSenha()))
+    {
+      predicates.add(builder.like(builder.lower(root.get("senha")),
+        "%" + fornecedorfilter.getSenha().toLowerCase() + "%"
       ));
     }
 

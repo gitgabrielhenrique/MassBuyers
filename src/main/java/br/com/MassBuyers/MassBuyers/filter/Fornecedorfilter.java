@@ -1,7 +1,7 @@
 package br.com.MassBuyers.MassBuyers.filter;
 
 public class Fornecedorfilter {
-  private  String nomefornecedor;
+  private  String nome;
   private Long cnpj;
   private Long telefone;
   private String descricao;
@@ -10,12 +10,12 @@ public class Fornecedorfilter {
   private String nomecidade;
   private String nomeestado;
 
-  public String getNomefornecedor() {
-    return nomefornecedor;
+  public String getNome() {
+    return nome;
   }
 
-  public void setNomefornecedor(String nomefornecedor) {
-    this.nomefornecedor = nomefornecedor;
+  public void setNome(String nome) {
+    this.nome = nome;
   }
 
   public Long getCnpj() {

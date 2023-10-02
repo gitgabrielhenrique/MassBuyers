@@ -4,13 +4,14 @@ package br.com.MassBuyers.MassBuyers.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="fornecedor")
 public class Fornecedor {
 @Id
   private Long id;
-
+private String nome;
 private Long cnpj;
 private Long telefone;
 private String descricao;
@@ -23,6 +24,15 @@ private String email;
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
   }
 
   public Long getCnpj() {
@@ -98,4 +108,17 @@ private String email;
 
   @OneToMany(mappedBy = "fornecedor")
   private List<Venda> vendas=new ArrayList<>();
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Fornecedor that = (Fornecedor) o;
+    return id.equals(that.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
+  }
 }
