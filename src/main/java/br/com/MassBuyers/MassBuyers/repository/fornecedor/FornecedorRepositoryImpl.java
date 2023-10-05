@@ -36,12 +36,13 @@ public class FornecedorRepositoryImpl implements FornecedorRepositoryQuery {
     criteria.select(builder.construct(FornecedorDto.class,
       root.get("id"),
       root.get("nome"),
-      root.get("descricao"),
-      root.get("cidade").get("nomecidade"),
-      root.get("cidade").get("estado").get("nome"),
       root.get("cnpj"),
+      root.get("telefone"),
+      root.get("descricao"),
       root.get("email"),
-      root.get("senha")
+      root.get("senha"),
+      root.get("cidade").get("nomecidade"),
+      root.get("cidade").get("estado").get("nome")
     ));
 
     Predicate[] predicates = criarRestricoes(builder, fornecedorfilter, root);
@@ -107,7 +108,7 @@ public class FornecedorRepositoryImpl implements FornecedorRepositoryQuery {
     {
 
       predicates.add(builder.greaterThanOrEqualTo((root.get("cnpj")),
-        "%" + fornecedorfilter.getCnpj() + "%"
+         fornecedorfilter.getCnpj()
       ));
     }
     if (!StringUtils.isEmpty(fornecedorfilter.getEmail()))

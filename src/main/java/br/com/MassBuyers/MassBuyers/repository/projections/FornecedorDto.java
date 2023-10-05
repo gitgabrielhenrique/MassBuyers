@@ -1,8 +1,9 @@
 package br.com.MassBuyers.MassBuyers.repository.projections;
 
 public class FornecedorDto {
-private String nome;
+
   private Long id;
+  private String nome;
   private Long cnpj;
   private Long telefone;
   private String descricao;
@@ -11,9 +12,9 @@ private String nome;
   private String nomecidade;
   private String nomeestado;
 
-  public FornecedorDto(String nome, Long id, Long cnpj, Long telefone, String descricao, String email, String senha, String nomecidade, String nomeestado) {
-    this.nome = nome;
+  public FornecedorDto(Long id, String nome, Long cnpj, Long telefone, String descricao, String email, String senha, String nomecidade, String nomeestado) {
     this.id = id;
+    this.nome = nome;
     this.cnpj = cnpj;
     this.telefone = telefone;
     this.descricao = descricao;
@@ -23,20 +24,20 @@ private String nome;
     this.nomeestado = nomeestado;
   }
 
-  public String getNome() {
-    return nome;
-  }
-
-  public void setNome(String nome) {
-    this.nome = nome;
-  }
-
   public Long getId() {
     return id;
   }
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
   }
 
   public Long getCnpj() {
