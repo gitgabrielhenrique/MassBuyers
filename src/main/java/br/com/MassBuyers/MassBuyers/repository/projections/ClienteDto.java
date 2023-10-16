@@ -1,18 +1,21 @@
 package br.com.MassBuyers.MassBuyers.repository.projections;
 
-import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class ClienteDto {
   private Long id;
   private String nome;
-  private Date nascimento;
+  private LocalDate nascimento;
   private String email;
   private String senha;
   private Long telefone;
   private String nomecidade;
   private String nomeestado;
 
-  public ClienteDto(Long id, String nome, Date nascimento, String email, String senha, Long telefone, String nomecidade, String nomeestado) {
+  public ClienteDto(Long id, String nome, LocalDate nascimento, String email, String senha, Long telefone, String nomecidade, String nomeestado) {
     this.id = id;
     this.nome = nome;
     this.nascimento = nascimento;
@@ -23,6 +26,14 @@ public class ClienteDto {
     this.nomeestado = nomeestado;
   }
 
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   public String getNome() {
     return nome;
   }
@@ -31,11 +42,11 @@ public class ClienteDto {
     this.nome = nome;
   }
 
-  public Date getNascimento() {
+  public LocalDate getNascimento() {
     return nascimento;
   }
 
-  public void setNascimento(Date nascimento) {
+  public void setNascimento(LocalDate nascimento) {
     this.nascimento = nascimento;
   }
 

@@ -1,13 +1,28 @@
 package br.com.MassBuyers.MassBuyers.filter;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Clientefilter {
+  private Long id;
   private String nome;
-  private Date nascimento;
+  @DateTimeFormat(pattern = "yyyy/MM/dd")
+  private LocalDate datanascimento;
   private String email;
   private String senha;
   private Long telefone;
+  private String nomecidade;
+  private String nomeestado;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public String getNome() {
     return nome;
@@ -17,12 +32,12 @@ public class Clientefilter {
     this.nome = nome;
   }
 
-  public Date getNascimento() {
-    return nascimento;
+  public LocalDate getDatanascimento() {
+    return datanascimento;
   }
 
-  public void setNascimento(Date nascimento) {
-    this.nascimento = nascimento;
+  public void setDatanascimento(LocalDate datanascimento) {
+    this.datanascimento = datanascimento;
   }
 
   public String getEmail() {
@@ -47,5 +62,21 @@ public class Clientefilter {
 
   public void setTelefone(Long telefone) {
     this.telefone = telefone;
+  }
+
+  public String getNomecidade() {
+    return nomecidade;
+  }
+
+  public void setNomecidade(String nomecidade) {
+    this.nomecidade = nomecidade;
+  }
+
+  public String getNomeestado() {
+    return nomeestado;
+  }
+
+  public void setNomeestado(String nomeestado) {
+    this.nomeestado = nomeestado;
   }
 }

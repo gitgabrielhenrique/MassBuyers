@@ -21,7 +21,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteRepositoryImpl {
+public class ClienteRepositoryImpl implements  ClienteRepositoryQuery {
 
 
   @Autowired
@@ -32,7 +32,7 @@ public class ClienteRepositoryImpl {
     CriteriaBuilder builder = manager.getCriteriaBuilder();
     CriteriaQuery<ClienteDto> criteria = builder.createQuery(ClienteDto.class);
     Root<Cliente> root = criteria.from(Cliente.class);
-//continuar aqui
+
     criteria.select(builder.construct(ClienteDto.class,
       root.get("id"),
       root.get("nome"),
@@ -44,17 +44,17 @@ public class ClienteRepositoryImpl {
       root.get("cidade").get("estado").get("nome")
     ));
 
-    Predicate[] predicates = criarRestricoes(builder, fornecedorfilter, root);
+    Predicate[] predicates = criarRestricoes(builder, clientefilter, root);
     criteria.where(predicates);
     criteria.orderBy(builder.asc(root.get("nome")));
 
-    TypedQuery<FornecedorDto> query = manager.createQuery(criteria);
+    TypedQuery<ClienteDto> query = manager.createQuery(criteria);
     adicionarRestricoesDaPaginacao(query, pageable);
 
-    return new PageImpl<>(query.getResultList(),pageable, total(fornecedorfilter));
+    return new PageImpl<>(query.getResultList(), pageable, total(clientefilter));
   }
-  private void adicionarRestricoesDaPaginacao(TypedQuery<?> query, Pageable pageable)
-  {
+
+  private void adicionarRestricoesDaPaginacao(TypedQuery<?> query, Pageable pageable) {
     int paginaatual = pageable.getPageNumber();
     int totalRegistroPorPagina = pageable.getPageSize();
     int primeiroRegistroDaPagina = paginaatual * totalRegistroPorPagina;
@@ -62,64 +62,59 @@ public class ClienteRepositoryImpl {
     query.setFirstResult(primeiroRegistroDaPagina);
     query.setMaxResults(totalRegistroPorPagina);
   }
-  private Long total(Fornecedorfilter fornecedorfilter)
-  {
+
+  private Long total(Clientefilter clientefilter) {
     CriteriaBuilder builder = manager.getCriteriaBuilder();
     CriteriaQuery<Long> criteria = builder.createQuery(Long.class);
-    Root<Fornecedor> root = criteria.from(Fornecedor.class);
+    Root<Cliente> root = criteria.from(Cliente.class);
 
-    Predicate[] predicates = criarRestricoes(builder, fornecedorfilter, root);
+    Predicate[] predicates = criarRestricoes(builder, clientefilter, root);
     criteria.where(predicates);
     criteria.orderBy(builder.asc(root.get("nome")));
     criteria.select(builder.count(root));
     return manager.createQuery(criteria).getSingleResult();
   }
 
-  private Predicate[] criarRestricoes(CriteriaBuilder builder, Fornecedorfilter fornecedorfilter, Root<Fornecedor> root) {
+  private Predicate[] criarRestricoes(CriteriaBuilder builder, Clientefilter clientefilter, Root<Cliente> root) {
     List<Predicate> predicates = new ArrayList<>();
 
-    if (!StringUtils.isEmpty(fornecedorfilter.getNome()))
-    {
+    if (!StringUtils.isEmpty(clientefilter.getNome())) {
       predicates.add(builder.like(builder.lower(root.get("nome")),
-        "%" + fornecedorfilter.getNome().toLowerCase() + "%"
+        "%" + clientefilter.getNome().toLowerCase() + "%"
       ));
     }
 
-    if (!StringUtils.isEmpty(fornecedorfilter.getNomecidade()))
-    {
+    if (!StringUtils.isEmpty(clientefilter.getNomecidade())) {
       predicates.add(builder.like(builder.lower(root.get("cidade").get("nomecidade")),
-        "%" + fornecedorfilter.getNomecidade().toLowerCase() + "%"
+        "%" + clientefilter.getNomecidade().toLowerCase() + "%"
       ));
     }
-    if (!StringUtils.isEmpty(fornecedorfilter.getNomeestado()))
-    {
+    if (!StringUtils.isEmpty(clientefilter.getNomeestado())) {
       predicates.add(builder.like(builder.lower(root.get("cidade").get("estado").get("nome")),
-        "%" + fornecedorfilter.getNome().toLowerCase() + "%"
+        "%" + clientefilter.getNomeestado().toLowerCase() + "%"
       ));
     }
-    if (!StringUtils.isEmpty(fornecedorfilter.getDescricao()))
-    {
-      predicates.add(builder.like(builder.lower(root.get("descricao")),
-        "%" + fornecedorfilter.getDescricao().toLowerCase() + "%"
-      ));
-    }
-    if ((fornecedorfilter.getCnpj()!=null))
-    {
 
-      predicates.add(builder.greaterThanOrEqualTo((root.get("cnpj")),
-        fornecedorfilter.getCnpj()
+    if ((clientefilter.getTelefone() != null)) {
+
+      predicates.add(builder.greaterThanOrEqualTo(root.get("telefone"),
+        clientefilter.getTelefone()
       ));
     }
-    if (!StringUtils.isEmpty(fornecedorfilter.getEmail()))
-    {
+    if ((clientefilter.getDatanascimento() != null)) {
+
+      predicates.add(builder.greaterThanOrEqualTo(root.get("nascimento"),
+        clientefilter.getDatanascimento()
+      ));
+    }
+    if (!StringUtils.isEmpty(clientefilter.getEmail())) {
       predicates.add(builder.like(builder.lower(root.get("email")),
-        "%" + fornecedorfilter.getEmail().toLowerCase() + "%"
+        "%" + clientefilter.getEmail().toLowerCase() + "%"
       ));
     }
-    if (!StringUtils.isEmpty(fornecedorfilter.getSenha()))
-    {
+    if (!StringUtils.isEmpty(clientefilter.getSenha())) {
       predicates.add(builder.like(builder.lower(root.get("senha")),
-        "%" + fornecedorfilter.getSenha().toLowerCase() + "%"
+        "%" + clientefilter.getSenha().toLowerCase() + "%"
       ));
     }
 
@@ -127,3 +122,4 @@ public class ClienteRepositoryImpl {
     return predicates.toArray(new Predicate[predicates.size()]);
 
   }
+}
