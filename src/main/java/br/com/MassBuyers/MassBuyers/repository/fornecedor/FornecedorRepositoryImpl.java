@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FornecedorRepositoryImpl implements FornecedorRepositoryQuery {
-//SOCORRO NEYMAR
+
 
   @Autowired
   private EntityManager manager;

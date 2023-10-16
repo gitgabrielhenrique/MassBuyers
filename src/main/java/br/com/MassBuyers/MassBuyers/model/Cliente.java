@@ -15,7 +15,7 @@ public class Cliente {
   private String email;
   private Date nascimento;
   private  String senha;
-  private int telefone;
+  private Long telefone;
 
   @ManyToOne
   @JoinColumn(name="idcidade")
@@ -64,11 +64,11 @@ public class Cliente {
     this.senha = senha;
   }
 
-  public int getTelefone() {
+  public Long getTelefone() {
     return telefone;
   }
 
-  public void setTelefone(int telefone) {
+  public void setTelefone(Long telefone) {
     this.telefone = telefone;
   }
 
