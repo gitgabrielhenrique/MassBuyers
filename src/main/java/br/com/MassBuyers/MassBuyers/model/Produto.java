@@ -1,6 +1,7 @@
 package br.com.MassBuyers.MassBuyers.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,33 +12,9 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 private String nome;
-private double precovenda;
-  private double precorevenda;
-private int quantidade;
-
-  public int getQuantidade() {
-    return quantidade;
-  }
-
-  public void setQuantidade(int quantidade) {
-    this.quantidade = quantidade;
-  }
-
-  public double getPrecovenda() {
-    return precovenda;
-  }
-
-  public void setPrecovenda(double precovenda) {
-    this.precovenda = precovenda;
-  }
-
-  public double getPrecorevenda() {
-    return precorevenda;
-  }
-
-  public void setPrecorevenda(double precorevenda) {
-    this.precorevenda = precorevenda;
-  }
+private BigDecimal precovenda;
+  private BigDecimal precorevenda;
+private Long quantidade;
 
   @ManyToOne
     @JoinColumn(name = "subtipoid")
@@ -73,6 +50,33 @@ private int quantidade;
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+
+
+
+  public BigDecimal getPrecovenda() {
+    return precovenda;
+  }
+
+  public void setPrecovenda(BigDecimal precovenda) {
+    this.precovenda = precovenda;
+  }
+
+  public BigDecimal getPrecorevenda() {
+    return precorevenda;
+  }
+
+  public void setPrecorevenda(BigDecimal precorevenda) {
+    this.precorevenda = precorevenda;
+  }
+
+  public Long getQuantidade() {
+    return quantidade;
+  }
+
+  public void setQuantidade(Long quantidade) {
+    this.quantidade = quantidade;
   }
 
   public String getNome() {

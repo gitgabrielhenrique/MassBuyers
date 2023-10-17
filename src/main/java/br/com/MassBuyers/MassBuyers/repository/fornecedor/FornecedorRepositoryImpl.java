@@ -95,7 +95,7 @@ public class FornecedorRepositoryImpl implements FornecedorRepositoryQuery {
     if (!StringUtils.isEmpty(fornecedorfilter.getNomeestado()))
     {
       predicates.add(builder.like(builder.lower(root.get("cidade").get("estado").get("nome")),
-        "%" + fornecedorfilter.getNome().toLowerCase() + "%"
+        "%" + fornecedorfilter.getNomeestado().toLowerCase() + "%"
       ));
     }
     if (!StringUtils.isEmpty(fornecedorfilter.getDescricao()))
