@@ -94,10 +94,10 @@ insert into tipo_prod(id,nome)values(2,'alimentos');
 
 create table venda(
 id bigint primary key not null auto_increment,
-data date,
+datavenda date,
 idfornecedor bigint not null,
 idcliente bigint not null,
 idproduto bigint not null
 );
-insert into venda(id,data,idfornecedor,idcliente,idproduto)values(1,'2023-3-3',1,1,1);
-insert into venda(id,data,idfornecedor,idcliente,idproduto) values(2,'2023-4-6',2,2,2);
+insert into venda(id,datavenda,idfornecedor,idcliente,idproduto)values(1,'2023-3-3',1,1,1);
+insert into venda(id,datavenda,idfornecedor,idcliente,idproduto) values(2,'2023-4-6',2,2,2);

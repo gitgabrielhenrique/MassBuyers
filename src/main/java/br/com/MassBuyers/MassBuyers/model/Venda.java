@@ -1,6 +1,7 @@
 package br.com.MassBuyers.MassBuyers.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class Venda {
 
   @Id
   private Long id;
-  private Date data;
+  private LocalDate datavenda;
 
  @ManyToOne
   @JoinColumn(name = "idproduto")
@@ -32,12 +33,12 @@ public class Venda {
     this.id = id;
   }
 
-  public Date getData() {
-    return data;
+  public LocalDate getDatavenda() {
+    return datavenda;
   }
 
-  public void setData(Date data) {
-    this.data = data;
+  public void setDatavenda(LocalDate datavenda) {
+    this.datavenda = datavenda;
   }
 
   public Produto getProduto() {
