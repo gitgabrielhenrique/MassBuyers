@@ -1,12 +1,13 @@
 package br.com.MassBuyers.MassBuyers.filter;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 public class Vendafilter {
   private Long id;
-  @DateTimeFormat(pattern = "yyyy/MM/dd")
+  @JsonFormat(pattern = "yyyy/MM/dd")
   private LocalDate datavenda;
 private String nomefornecedor;
 private String nomecliente;

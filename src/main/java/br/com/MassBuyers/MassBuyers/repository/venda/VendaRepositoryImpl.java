@@ -74,7 +74,7 @@ public class VendaRepositoryImpl implements VendaRepositoryQuery {
   private Predicate[] criarRestricoes(CriteriaBuilder builder, Vendafilter vendafilter, Root<Venda> root) {
     List<Predicate> predicates = new ArrayList<>();
 
-    if ((vendafilter.getDatavenda() != null)) {
+    if (vendafilter.getDatavenda() != null) {
 
       predicates.add(builder.greaterThanOrEqualTo(root.get("datavenda"),
         vendafilter.getDatavenda()
