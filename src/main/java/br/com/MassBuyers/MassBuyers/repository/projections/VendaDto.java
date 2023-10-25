@@ -4,14 +4,15 @@ import java.time.LocalDate;
 
 public class VendaDto {
   private Long id;
-  private LocalDate registrovenda;
+ // private LocalDate registrovenda;
+ private LocalDate datavenda;
   private String nomefornecedor;
   private String nomecliente;
   private String nomeproduto;
 
-  public VendaDto(Long id, LocalDate registrovenda, String nomefornecedor, String nomecliente, String nomeproduto) {
+  public VendaDto(Long id, LocalDate datavenda, String nomefornecedor, String nomecliente, String nomeproduto) {
     this.id = id;
-    this.registrovenda = registrovenda;
+    this.datavenda = datavenda;
     this.nomefornecedor = nomefornecedor;
     this.nomecliente = nomecliente;
     this.nomeproduto = nomeproduto;
@@ -25,12 +26,12 @@ public class VendaDto {
     this.id = id;
   }
 
-  public LocalDate getRegistrovenda() {
-    return registrovenda;
+  public LocalDate getDatavenda() {
+    return datavenda;
   }
 
-  public void setRegistrovenda(LocalDate registrovenda) {
-    this.registrovenda = registrovenda;
+  public void setDatavenda(LocalDate datavenda) {
+    this.datavenda = datavenda;
   }
 
   public String getNomefornecedor() {

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class Vendafilter {
   private Long id;
-  @JsonFormat(pattern = "yyyy/MM/dd")
+  @DateTimeFormat(pattern = "yyyy/MM/dd")
   private LocalDate datavenda;
 private String nomefornecedor;
 private String nomecliente;

@@ -42,7 +42,7 @@ public class VendaRepositoryImpl implements VendaRepositoryQuery {
 
     Predicate[] predicates = criarRestricoes(builder, vendafilter, root);
     criteria.where(predicates);
-   // criteria.orderBy(builder.asc(root.get("nome")));
+
 
     TypedQuery<VendaDto> query = manager.createQuery(criteria);
     adicionarRestricoesDaPaginacao(query, pageable);
@@ -66,7 +66,7 @@ public class VendaRepositoryImpl implements VendaRepositoryQuery {
 
    Predicate[] predicates = criarRestricoes(builder, vendafilter, root);
     criteria.where(predicates);
-   // criteria.orderBy(builder.asc(root.get("nome")));
+
     criteria.select(builder.count(root));
     return manager.createQuery(criteria).getSingleResult();
   }
