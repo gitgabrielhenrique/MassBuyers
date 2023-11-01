@@ -49,9 +49,10 @@ public List<Cliente> ListarTodosClientes(){
         cliente.setNome(clienteRequest.getNome());
         cliente.setEmail(clienteRequest.getEmail());
         cliente.setNascimento(clienteRequest.getNascimento());
+        cliente.setSenha(clienteRequest.getSenha());
+        cliente.setTelefone(clienteRequest.getTelefone());
         cliente.setCidade(clienteRequest.getCidade());
 
-        cliente.setSenha(clienteRequest.getSenha());
 
 
 
@@ -71,9 +72,9 @@ public List<Cliente> ListarTodosClientes(){
 
 
   @PostMapping()
-  public ResponseEntity<Cidade> criar(@RequestBody Cidade cidade){
+  public ResponseEntity<Cliente> criar(@RequestBody Cliente cliente){
 
-    return new ResponseEntity<>(cidadeRepository.save(cidade),HttpStatus.CREATED);
+    return new ResponseEntity<>(clienteRepository.save(cliente),HttpStatus.CREATED);
 
   }
 
