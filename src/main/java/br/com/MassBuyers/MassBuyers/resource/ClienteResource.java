@@ -11,9 +11,9 @@ import br.com.MassBuyers.MassBuyers.repository.projections.FornecedorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,4 +34,49 @@ public List<Cliente> ListarTodosClientes(){
   public Page<ClienteDto> pesquisar(Clientefilter clientefilter, Pageable pageable){
     return  clienteRepository.Filtrar(clientefilter,pageable);
   }
+
+
+  @DeleteMapping("/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void remover(@PathVariable Long id){clienteRepository.deleteById(id);}
+
+
+
+  @PutMapping("/mudar-cliente/{id}")
+  public HttpStatus mudarciade(@PathVariable Long id, @RequestBody Cliente clienteRequest){
+    return  clienteRepository.findById(id).map(
+      cliente -> {
+        cliente.setNome(clienteRequest.getNome());
+        cliente.setEmail(clienteRequest.getEmail());
+        cliente.setNascimento(clienteRequest.getNascimento());
+        cliente.setCidade(clienteRequest.getCidade());
+
+        cliente.setSenha(clienteRequest.getSenha());
+
+
+
+
+        clienteRepository.save(cliente);
+        return  HttpStatus.OK;
+      }
+
+    ).orElseGet(() -> {
+      return HttpStatus.NOT_FOUND;
+    });
+
+
+  }
+
+
+
+
+  @PostMapping()
+  public ResponseEntity<Cidade> criar(@RequestBody Cidade cidade){
+
+    return new ResponseEntity<>(cidadeRepository.save(cidade),HttpStatus.CREATED);
+
+  }
+
+
+
 }

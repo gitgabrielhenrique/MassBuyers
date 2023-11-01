@@ -35,26 +35,37 @@ return cidadeRepository.findAll();
   public Page<CidadeDto> pesquisar(Cidadefilter cidadefilter, Pageable pageable){
     return  cidadeRepository.Filtrar(cidadefilter,pageable);
   }
-//continua aqui viado
+
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void remover(@PathVariable Long id){cidadeRepository.deleteById(id);}
 
 
 
-  @PutMapping("/{id}")
-  public  ResponseEntity<Cidade> atualizar(@PathVariable Long id,@Valid @RequestBody Cidade cidade ){
-    Cidade cidadesalva=cidadeService.atualizar(id,cidade);
-    return  ResponseEntity.ok(cidadesalva);
+  @PutMapping("/mudar-cidade/{id}")
+  public HttpStatus mudarciade(@PathVariable Long id, @RequestBody Cidade cidadeRequest){
+    return  cidadeRepository.findById(id).map(
+      cidade -> {
+        cidade.setNomecidade(cidadeRequest.getNomecidade());
+        cidade.setEstado(cidadeRequest.getEstado());
+        cidadeRepository.save(cidade);
+        return  HttpStatus.OK;
+      }
+
+    ).orElseGet(() -> {
+      return HttpStatus.NOT_FOUND;
+    });
+
+
   }
 
 
 
 
   @PostMapping()
-  public ResponseEntity<Cidade> criar(@Valid @RequestBody Cidade cidade, HttpServletResponse response){
-     Cidade cidadesalva= cidadeService.salvar(cidade);
-     return ResponseEntity.status(HttpStatus.CREATED).body(cidadesalva);
+  public ResponseEntity<Cidade> criar( @RequestBody Cidade cidade){
+
+     return new ResponseEntity<>(cidadeRepository.save(cidade),HttpStatus.CREATED);
 
   }
 

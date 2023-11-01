@@ -1,6 +1,8 @@
 package br.com.MassBuyers.MassBuyers.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +19,10 @@ private Long id;
 @ManyToOne
 @JoinColumn(name = "idestado")
 private Estado estado;
-
+  @JsonIgnore
 @OneToMany(mappedBy = "cidade")
 private List<Fornecedor> fornecedor= new ArrayList<>();
-
+  @JsonIgnore
   @OneToMany(mappedBy = "cidade")
   private List<Cliente> clientes= new ArrayList<>();
 

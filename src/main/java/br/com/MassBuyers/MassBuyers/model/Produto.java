@@ -1,5 +1,7 @@
 package br.com.MassBuyers.MassBuyers.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ private Long quantidade;
   @ManyToOne
     @JoinColumn(name = "subtipoid")
     private Subtipoprod subtipoprod;
-
+  @JsonIgnore
     @OneToMany(mappedBy = "produto")
     private List<Venda> vendas=new ArrayList<>();
 

@@ -1,9 +1,12 @@
 package br.com.MassBuyers.MassBuyers.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="cliente")
@@ -20,7 +23,7 @@ public class Cliente {
   @ManyToOne
   @JoinColumn(name="idcidade")
   private Cidade cidade;
-
+  @JsonIgnore
   @OneToMany (mappedBy = "cliente")
   private List<Venda> vendas= new ArrayList<>();
 
@@ -86,5 +89,19 @@ public class Cliente {
 
   public void setVendas(List<Venda> vendas) {
     this.vendas = vendas;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Cliente cliente = (Cliente) o;
+    return id.equals(cliente.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 }
