@@ -11,9 +11,9 @@ import br.com.MassBuyers.MassBuyers.repository.projections.ProdutoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +35,44 @@ public class ProdutoResource {
   public Page<ProdutoDto> pesquisar(Produtofilter produtofilter, Pageable pageable){
     return  produtoRepository.Filtrar(produtofilter,pageable);
   }
+
+
+  @DeleteMapping("/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void remover(@PathVariable Long id){produtoRepository.deleteById(id);}
+
+
+
+  @PutMapping("/mudar-produto/{id}")
+  public HttpStatus mudarproduto(@PathVariable Long id, @RequestBody Produto produtoRequest){
+    return  produtoRepository.findById(id).map(
+      produto -> {
+        produto.setNome(produtoRequest.getNome());
+        produto.setPrecovenda(produtoRequest.getPrecovenda());
+        produto.setPrecorevenda(produtoRequest.getPrecorevenda());
+        produto.setQuantidade(produtoRequest.getQuantidade());
+        produto.setSubtipoprod(produtoRequest.getSubtipoprod());
+        produto.setFornecedor(produtoRequest.getFornecedor());
+        return  HttpStatus.OK;
+      }
+
+    ).orElseGet(() -> {
+      return HttpStatus.NOT_FOUND;
+    });
+
+
+  }
+
+
+
+
+  @PostMapping()
+  public ResponseEntity<Produto> criar(@RequestBody Produto produto){
+
+    return new ResponseEntity<>(produtoRepository.save(produto),HttpStatus.CREATED);
+
+  }
+
+
 
 }

@@ -12,6 +12,7 @@ import java.util.Objects;
 @Table(name="fornecedor")
 public class Fornecedor {
 @Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 private String nome;
 private Long cnpj;
