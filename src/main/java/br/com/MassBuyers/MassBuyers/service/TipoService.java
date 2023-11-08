@@ -17,7 +17,7 @@ public class TipoService {
 
   }
   public Tipoprod atualizar(Long id,Tipoprod tipoprod){
-    Tipoprod subtiposalvo = buscartipo(id);
+    Tipoprod tiposalvo = buscartipo(id);
     return tipoprodRepository.save(tipoprod);
   }
 
