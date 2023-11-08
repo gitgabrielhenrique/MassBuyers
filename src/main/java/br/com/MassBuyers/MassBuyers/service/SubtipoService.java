@@ -30,6 +30,6 @@ public class SubtipoService {
     }
     return subtiposalvo.get();
   }
-  //fazer o resource
+
 
 }

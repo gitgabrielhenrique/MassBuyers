@@ -53,6 +53,7 @@ public class ProdutoResource {
         produto.setQuantidade(produtoRequest.getQuantidade());
         produto.setSubtipoprod(produtoRequest.getSubtipoprod());
         produto.setFornecedor(produtoRequest.getFornecedor());
+        produtoRepository.save(produto);
         return  HttpStatus.OK;
       }
 
