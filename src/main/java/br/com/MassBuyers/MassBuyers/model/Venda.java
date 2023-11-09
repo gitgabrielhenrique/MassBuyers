@@ -10,6 +10,7 @@ import java.util.List;
 public class Venda {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private LocalDate datavenda;
 
